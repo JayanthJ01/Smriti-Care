@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --smriti-cream: #fffbef;
+  --smriti-ink: #12372a;
+  --smriti-pine: #114e36;
+  --smriti-marigold: #f2a413;
+  --smriti-line: #e7dcc0;
+  --smriti-card-border: #dcebe0;
+  --smriti-soft-shadow: 0 12px 32px -14px rgba(18, 55, 42, 0.18), 0 2px 8px rgba(18,55,42,0.06);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fffbef;
+  color: #12372a;
+  font-family: Nunito, "Noto Sans Bengali", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(1000px 480px at 10% -8%, rgba(255, 216, 77, 0.22), transparent 62%),
+    radial-gradient(900px 520px at 96% 8%, rgba(46, 155, 218, 0.1), transparent 62%),
+    radial-gradient(760px 420px at 50% 112%, rgba(47, 169, 122, 0.12), transparent 65%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #ffe98a;
+  color: #12372a;
+}
+
+/* ---------- Reusable design-system utilities ---------- */
+
+@layer components {
+  .smriti-shell {
+    @apply mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8;
+  }
+
+  .smriti-card {
+    border-radius: 1.5rem;
+    border: 1.5px solid var(--smriti-card-border);
+    background: #ffffff;
+    box-shadow: var(--smriti-soft-shadow);
+  }
+
+  .smriti-card-cream {
+    border-radius: 1.5rem;
+    border: 1.5px solid #f0e2bd;
+    background: linear-gradient(180deg, #fffdf3 0%, #fff6df 100%);
+    box-shadow: var(--smriti-soft-shadow);
+  }
+
+  .smriti-card-sky {
+    border-radius: 1.5rem;
+    border: 1.5px solid #cfe7f7;
+    background: linear-gradient(180deg, #f4faff 0%, #e6f2fd 100%);
+    box-shadow: var(--smriti-soft-shadow);
+  }
+
+  .smriti-card-peach {
+    border-radius: 1.5rem;
+    border: 1.5px solid #f3d9c2;
+    background: linear-gradient(180deg, #fff8f1 0%, #ffefe0 100%);
+    box-shadow: var(--smriti-soft-shadow);
+  }
+
+  .smriti-card-mint {
+    border-radius: 1.5rem;
+    border: 1.5px solid #c6e6cd;
+    background: linear-gradient(180deg, #f2faf3 0%, #e2f2e5 100%);
+    box-shadow: var(--smriti-soft-shadow);
+  }
+
+  .smriti-card-lav {
+    border-radius: 1.5rem;
+    border: 1.5px solid #d9cffb;
+    background: linear-gradient(180deg, #f4f1fe 0%, #e7defb 100%);
+    box-shadow: var(--smriti-soft-shadow);
+  }
+
+  .smriti-card-pine {
+    border-radius: 1.5rem;
+    color: #fff;
+    background:
+      radial-gradient(420px 220px at 90% 0%, rgba(255, 216, 77, 0.28), transparent 65%),
+      linear-gradient(135deg, #1b6b4a 0%, #114e36 60%, #0b3b2a 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.16);
+    box-shadow: var(--smriti-soft-shadow);
+  }
+
+  .smriti-card-sun {
+    border-radius: 1.5rem;
+    border: 1.5px solid #f0e2bd;
+    background: linear-gradient(180deg, #fffdf3 0%, #fff3cf 100%);
+    box-shadow: var(--smriti-soft-shadow);
+  }
+
+  .smriti-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0.25rem 0.75rem;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .smriti-h-display {
+    font-family: Fraunces, "Noto Sans Bengali", Georgia, serif;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .smriti-btn {
+    display: inline-flex;
+    min-height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    border-radius: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 18px;
+    font-weight: 800;
+    transition: all 0.2s ease;
+  }
+  .smriti-btn:active { transform: scale(0.98); }
+  .smriti-btn:disabled { cursor: not-allowed; opacity: 0.6; }
+
+  .smriti-btn-primary {
+    background: #134e43;
+    color: #fff;
+    box-shadow: 0 6px 16px -6px rgba(20, 80, 70, 0.45);
+  }
+  .smriti-btn-primary:hover { background: #0e3d34; }
+
+  .smriti-btn-amber {
+    background: #f2a413;
+    color: #1c2e29;
+    box-shadow: 0 8px 20px -6px rgba(200, 120, 10, 0.55);
+  }
+  .smriti-btn-amber:hover { background: #f9be4a; }
+
+  .smriti-btn-coral {
+    background: linear-gradient(180deg, #e85d4d 0%, #d14a3b 100%);
+    color: #fff;
+    box-shadow: 0 10px 22px -8px rgba(209, 74, 59, 0.6);
+  }
+  .smriti-btn-coral:hover { filter: brightness(1.04); }
+
+  .smriti-btn-ghost {
+    border: 2px solid rgba(19, 78, 67, 0.2);
+    background: #fff;
+    color: #0e3d34;
+  }
+  .smriti-btn-ghost:hover { border-color: #16695a; background: #eaf6f0; }
+
+  .smriti-btn-lg {
+    min-height: 4.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 20px;
+  }
+
+  .smriti-input {
+    width: 100%;
+    border-radius: 1rem;
+    border: 2px solid #e9dcc0;
+    background: #fff;
+    padding: 1rem 1.25rem;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1c2e29;
+  }
+  .smriti-input::placeholder { font-weight: 600; color: rgba(100, 121, 115, 0.7); }
+  .smriti-input:focus { border-color: #1a7d6b; outline: none; box-shadow: 0 0 0 4px rgba(34, 148, 127, 0.2); }
+
+  .smriti-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 999px;
+    padding: 0.375rem 0.75rem;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  /* Subtle gamocha-inspired woven border (respectful, minimal) */
+  .gamocha-strip {
+    background-image: repeating-linear-gradient(
+      90deg,
+      #c62828 0 10px,
+      #ffffff 10px 20px,
+      #1a7d6b 20px 30px,
+      #ffffff 30px 34px
+    );
+  }
+
+  .gamocha-dots {
+    background-image: radial-gradient(rgba(20, 70, 60, 0.12) 1.5px, transparent 1.6px);
+    background-size: 18px 18px;
+  }
+
+  .no-horizontal-scroll {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Focus visibility for elderly users — always obvious */
+:focus-visible {
+  outline: 3px solid #22947f;
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Calm motion defaults + reduced-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Large scrollbar for tablet touch clarity (subtle) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #fff1d6;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a7d6b;
+  border-radius: 999px;
+  border: 3px solid #fff1d6;
+}

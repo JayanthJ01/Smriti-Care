@@ -1,0 +1,17 @@
+===CAREGIVER_COMPONENTS=== 
+ActivityPanel.tsx
+AppointmentsPanel.tsx
+cgShared.tsx
+CognitivePanel.tsx
+DashboardPanel.tsx
+FamilyPanel.tsx
+HydrationPanel.tsx
+MedicinesPanel.tsx
+PatientAppPanel.tsx
+SummaryTiles.tsx
+===PAGE=== 
+CaregiverPage.tsx
+RecentPanel.tsx
+UpcomingPanel.tsx
+===CG_KEYS_EN=== 
+===CG_KEYS_AS=== 

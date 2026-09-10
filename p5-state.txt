@@ -1,0 +1,71 @@
+﻿===FILES===
+ActivityPanel.tsx
+cgShared.tsx
+HydrationPanel.tsx
+MedicinesPanel.tsx
+SummaryTiles.tsx
+===SIGNATURES===
+--ActivityPanel.tsx--
+export default function ActivityPanel() {
+--cgShared.tsx--
+--HydrationPanel.tsx--
+export default function HydrationPanel() {
+--MedicinesPanel.tsx--
+export default function MedicinesPanel() {
+--SummaryTiles.tsx--
+export default function SummaryTiles({ summary }: { summary: CaregiverSummary }) {
+===CTX-SIG===
+const addMedicine = useCallback((data: Omit<Medicine, 'id' | 'status'>) => {
+const updateMedicine = useCallback((id: string, patch: Partial<Medicine>) => {
+const removeMedicine = useCallback((id: string) => {
+const toggleMedicineActive = useCallback((id: string) => {
+const setHydrationTarget = useCallback((glasses: number) => {
+const addAppointment = useCallback((data: Omit<Appointment, 'id'>) => {
+const updateAppointment = useCallback((id: string, patch: Partial<Appointment>) => {
+const removeAppointment = useCallback((id: string) => {
+const saveGameResult = useCallback((result: GameResult) => {
+===CGKEYS-USED===
+t('cg.active
+t('cg.activityTitle
+t('cg.addMedicine
+t('cg.cancel
+t('cg.dailyTarget
+t('cg.delete
+t('cg.dosage
+t('cg.dosagePh
+t('cg.edit
+t('cg.editMedicine
+t('cg.errName
+t('cg.goalReached
+t('cg.hydration
+t('cg.inactive
+t('cg.medicines
+t('cg.medName
+t('cg.medNamePh
+t('cg.medTime
+t('cg.noActivity
+t('cg.noMedicines
+t('cg.note
+t('cg.notePh
+t('cg.ofGoal
+t('cg.period
+t('cg.save
+t('cg.savedFeedback
+t('cg.targetHint
+t('cg.todayProgress
+t('cg.toggleActive
+t('cg.updateTarget
+===EN-TAIL===
+  'routine.goForWalk': 'Go for a walk',
+  'routine.sleep': 'Sleep',
+  'activity.gameCompleted': 'Game practice completed',
+};
+
+export default en;
+===AS-TAIL===
+  'routine.goForWalk': 'à¦–à§‹à¦œ à¦•à¦¢à¦¼à¦¾',
+  'routine.sleep': 'à¦Ÿà§‹à¦ªà¦¨à¦¿ à¦¯à§‹à§±à¦¾',
+  'activity.gameCompleted': 'à¦—à§‡à¦® à¦…à¦­à§à¦¯à¦¾à¦¸ à¦¸à¦®à§à¦ªà¦¨à§à¦¨ à¦¹â€™à¦²',
+};
+
+export default assamese;

@@ -1,0 +1,87 @@
+src/services/data/demo/DemoDataProvider.ts(177,1): error TS1005: '}' expected.
+src/services/data/factory.ts(1,2): error TS1109: Expression expected.
+src/services/data/factory.ts(1,9): error TS1005: ';' expected.
+src/services/data/factory.ts(1,18): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(1,30): error TS1005: '(' expected.
+src/services/data/factory.ts(1,37): error TS1005: ';' expected.
+src/services/data/factory.ts(2,2): error TS1003: Identifier expected.
+src/services/data/factory.ts(3,2): error TS1109: Expression expected.
+src/services/data/factory.ts(3,13): error TS1005: ';' expected.
+src/services/data/factory.ts(4,2): error TS1109: Expression expected.
+src/services/data/factory.ts(4,9): error TS1005: ';' expected.
+src/services/data/factory.ts(4,13): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(4,17): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(4,26): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(5,2): error TS1109: Expression expected.
+src/services/data/factory.ts(5,22): error TS1005: ';' expected.
+src/services/data/factory.ts(6,2): error TS1003: Identifier expected.
+src/services/data/factory.ts(6,15): error TS1005: ';' expected.
+src/services/data/factory.ts(6,22): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(6,31): error TS1005: ';' expected.
+src/services/data/factory.ts(6,43): error TS1005: '(' expected.
+src/services/data/factory.ts(6,45): error TS1005: ';' expected.
+src/services/data/factory.ts(6,54): error TS1005: ';' expected.
+src/services/data/factory.ts(6,58): error TS1005: ')' expected.
+src/services/data/factory.ts(7,15): error TS1005: ';' expected.
+src/services/data/factory.ts(8,2): error TS1003: Identifier expected.
+src/services/data/factory.ts(8,10): error TS1005: ';' expected.
+src/services/data/factory.ts(8,17): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(8,26): error TS1228: A type predicate is only allowed in return type position for functions and methods.
+src/services/data/factory.ts(8,29): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(8,36): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(8,41): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(8,44): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(8,48): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(8,56): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(8,61): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(9,27): error TS1005: ';' expected.
+src/services/data/factory.ts(9,41): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(9,45): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(9,50): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(9,54): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(10,2): error TS1003: Identifier expected.
+src/services/data/factory.ts(11,2): error TS1109: Expression expected.
+src/services/data/factory.ts(11,14): error TS1005: ';' expected.
+src/services/data/factory.ts(12,2): error TS1109: Expression expected.
+src/services/data/factory.ts(12,17): error TS1127: Invalid character.
+src/services/data/factory.ts(12,30): error TS1005: ';' expected.
+src/services/data/factory.ts(12,43): error TS1135: Argument expression expected.
+src/services/data/factory.ts(12,50): error TS1135: Argument expression expected.
+src/services/data/factory.ts(12,55): error TS1005: ',' expected.
+src/services/data/factory.ts(12,64): error TS1005: ',' expected.
+src/services/data/factory.ts(13,17): error TS1127: Invalid character.
+src/services/data/factory.ts(13,19): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(13,49): error TS1005: ';' expected.
+src/services/data/factory.ts(13,68): error TS1005: ',' expected.
+src/services/data/factory.ts(13,69): error TS1005: ',' expected.
+src/services/data/factory.ts(13,69): error TS1351: An identifier or keyword cannot immediately follow a numeric literal.
+src/services/data/factory.ts(13,71): error TS1109: Expression expected.
+src/services/data/factory.ts(15,2): error TS1109: Expression expected.
+src/services/data/factory.ts(15,9): error TS1005: ';' expected.
+src/services/data/factory.ts(15,18): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(15,23): error TS1228: A type predicate is only allowed in return type position for functions and methods.
+src/services/data/factory.ts(15,26): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(15,35): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(15,39): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(15,43): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(15,52): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(15,59): error TS1228: A type predicate is only allowed in return type position for functions and methods.
+src/services/data/factory.ts(15,62): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(16,13): error TS1005: ')' expected.
+src/services/data/factory.ts(16,17): error TS1435: Unknown keyword or identifier. Did you mean 'var'?
+src/services/data/factory.ts(16,21): error TS1128: Declaration or statement expected.
+src/services/data/factory.ts(16,22): error TS1128: Declaration or statement expected.
+src/services/data/factory.ts(16,24): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(16,28): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(16,32): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(16,39): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(16,50): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(16,55): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(16,60): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(16,63): error TS1434: Unexpected keyword or identifier.
+src/services/data/factory.ts(17,11): error TS1005: ';' expected.
+src/services/data/factory.ts(18,2): error TS1003: Identifier expected.
+src/services/data/factory.ts(18,3): error TS1161: Unterminated regular expression literal.
+src/services/voice/useVoice.ts(68,73): error TS1005: ',' expected.
+src/services/voice/useVoice.ts(68,74): error TS1135: Argument expression expected.
+src/services/voice/useVoice.ts(69,7): error TS1135: Argument expression expected.

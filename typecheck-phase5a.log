@@ -1,0 +1,9 @@
+src/pages/CaregiverPage/CaregiverHeader.tsx(2,39): error TS2307: Cannot find module '../CaregiverPage' or its corresponding type declarations.
+src/pages/CaregiverPage/CaregiverPage.tsx(23,8): error TS1192: Module '"c:/Users/owner/Desktop/SIH/src/pages/CaregiverPage/sections/CognitiveProgressSection"' has no default export.
+src/pages/CaregiverPage/sections/AppointmentsSection.tsx(169,41): error TS2304: Cannot find name 'updateAppointment'.
+src/pages/CaregiverPage/sections/CaregiverDashboard.tsx(4,39): error TS2307: Cannot find module '../../CaregiverPage' or its corresponding type declarations.
+src/pages/CaregiverPage/sections/CognitiveProgressSection.tsx(45,1): error TS1184: Modifiers cannot appear here.
+src/pages/CaregiverPage/sections/CognitiveProgressSection.tsx(109,24): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Record<GameId, GameDefinition>'.
+  No index signature with a parameter of type 'string' was found on type 'Record<GameId, GameDefinition>'.
+src/pages/CaregiverPage/sections/CognitiveProgressSection.tsx(112,26): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Record<GameId, GameDefinition>'.
+  No index signature with a parameter of type 'string' was found on type 'Record<GameId, GameDefinition>'.

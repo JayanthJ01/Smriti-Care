@@ -1,0 +1,372 @@
+﻿===CAREGIVER_COMPONENTS===
+ActivityPanel.tsx
+AppointmentsPanel.tsx
+cgShared.tsx
+CognitivePanel.tsx
+DashboardPanel.tsx
+FamilyPanel.tsx
+HydrationPanel.tsx
+MedicinesPanel.tsx
+PatientAppPanel.tsx
+SummaryTiles.tsx
+===CAREGIVER_PAGE===
+import { useState } from 'react';
+import { MessageCircleHeart, PhoneCall } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
+import AppShell from '../../components/shared/AppShell';
+import Button from '../../components/ui/Button';
+import { CalmPage } from '../../utils/motion';
+import SummaryTiles, { ChecklistCard } from '../../components/caregiver/SummaryTiles';
+import { caregiverSummary } from '../../data/demoData';
+import RecentPanel from './RecentPanel';
+import UpcomingPanel from './UpcomingPanel';
+
+export default function CaregiverPage() {
+  const { t } = useLanguage();
+  const [sent, setSent] = useState(false);
+
+  return (
+    <AppShell>
+      <CalmPage>
+        <div className="smriti-shell space-y-5 py-5 lg:py-6">
+          <section className="smriti-card-pine flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6">
+            <div>
+              <p className="smriti-eyebrow border-white/25 bg-white/10 text-marigold-200">
+                {t('caregiver.overview')}
+              </p>
+              <h1 className="smriti-h-display mt-2 text-[32px] text-white sm:text-[38px]">
+                {t('caregiver.title')}
+              </h1>
+              <p className="mt-1 max-w-[62ch] text-[17px] font-semibold text-white/85">
+                {t('caregiver.subtitle')}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button variant="amber" onClick={() => setSent(true)} disabled={sent} ariaLive="polite">
+                <MessageCircleHeart size={20} aria-hidden />
+                {sent ? 'Encouragement sent' : t('caregiver.message')}
+              </Button>
+              <Button variant="ghost" className="!border-white/30 !bg-white/10 !text-white" onClick={() => setSent(false)}>
+                <PhoneCall size={20} aria-hidden />
+                {t('caregiver.call')}
+              </Button>
+            </div>
+          </section>
+
+          <SummaryTiles summary={caregiverSummary} />
+
+          <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+            <ChecklistCard />
+            <RecentPanel />
+          </div>
+
+          <UpcomingPanel />
+        </div>
+      </CalmPage>
+    </AppShell>
+  );
+}
+===CG_SHARED===
+import type { ReactNode } from 'react';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { cx } from '../../utils/helpers';
+
+/** Small status tag â€” text + color, never color alone. */
+export function Tag({ label, tone = 'mint' }: { label: string; tone?: 'mint' | 'sky' | 'sun' | 'coral' | 'lav' | 'mist' }) {
+  const tones: Record<string, string> = {
+    mint: 'bg-mint-100 text-pine-900 border-pine-700/20',
+    sky: 'bg-sky-100 text-sky-700 border-sky-700/20',
+    sun: 'bg-sun-100 text-ink-700 border-sun-200',
+    coral: 'bg-coral-50 text-coral-600 border-coral-500/25',
+    lav: 'bg-lav-100 text-lav-700 border-lav-700/20',
+    mist: 'bg-mist text-ink-600 border-line',
+  };
+  return (
+    <span className={cx('inline-flex items-center rounded-full border px-3 py-0.5 text-[12px] font-extrabold uppercase tracking-[0.08em]', tones[tone])}>
+      {label}
+    </span>
+  );
+}
+
+export function SectionCard({ title, action, children, className }: { title: string; action?: ReactNode; children: ReactNode; className?: string }) {
+  return (
+    <section className={cx('rounded-3xl border-[1.5px] border-line bg-white p-5 shadow-soft sm:p-6', className)}>
+      <header className="mb-4 flex items-center justify-between gap-3">
+        <h3 className="font-display text-[20px] font-semibold text-pine-950 sm:text-[22px]">{title}</h3>
+        {action}
+      </header>
+      {children}
+    </section>
+  );
+}
+
+export function EmptyState({ icon, text }: { icon: string; text: string }) {
+  return (
+    <div className="grid place-items-center rounded-2xl border-[1.5px] border-dashed border-line bg-cream-50 px-4 py-8 text-center">
+      <span className="text-[34px]" aria-hidden>
+        {icon}
+      </span>
+      <p className="mt-2 text-[16px] font-bold text-ink-500">{text}</p>
+    </div>
+  );
+}
+
+export function Field({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <label className="block">
+      <span className="text-[14px] font-extrabold uppercase tracking-[0.08em] text-ink-600">{label}</span>
+      <div className="mt-1">{children}</div>
+    </label>
+  );
+}
+
+export const inputClass =
+  'w-full rounded-2xl border-[1.5px] border-line bg-white px-4 py-3 text-[17px] font-bold text-ink-800 outline-none transition focus:border-pine-700/50 focus:ring-4 focus:ring-pine-700/15';
+
+export function usePatientName(): (p: { name: string; nameAssamese: string }) => string {
+  const { language } = useLanguage();
+  return (p) => (language === 'as' ? p.nameAssamese : p.name);
+}
+===EN_TAIL===
+  'patient.start': 'Start',
+  'patient.takeMedicine': 'Take Medicine',
+  'patient.taken': 'Taken',
+  'patient.medicineTaken': 'Medicine Taken',
+  'patient.medicineOverdue': 'Medicine Due',
+  'patient.reminderSet': 'Reminder Set',
+  'patient.drinkWater': 'Drink Water',
+  'patient.goalComplete': 'Daily goal complete',
+  'patient.goalCompleteSub': 'Great! You had enough water today.',
+  'patient.viewAppointment': 'View Appointment',
+  'patient.appointmentDetails': 'Appointment Details',
+  'patient.appointmentViewSub': 'Here are your appointment details.',
+  'patient.deferred': 'Deferred',
+  'patient.cancelled': 'Cancelled',
+  'patient.overdue': 'Due',
+  'patient.recent': 'Recent activity',
+  'patient.recentTitle': 'Recent Activities',
+  'patient.progressTitle': 'Todays progress',
+  'patient.glasses': 'glasses',
+  'patient.of': 'of',
+  'patient.lastDrink': 'Last drink',
+  'patient.next': 'Next',
+  'patient.pending': 'Pending',
+  'patient.completed': 'Done',
+  'patient.missed': 'Missed',
+  'patient.upcoming': 'Upcoming',
+  'patient.demoNote': 'Demo data in Phase 1 - real care data connects later.',
+  'cognitive.memory': 'Memory',
+  'cognitive.memoryDesc': 'Remember pictures and pairs, slowly and joyfully.',
+  'cognitive.attention': 'Attention',
+  'cognitive.attentionDesc': 'Follow colours, sounds and simple patterns.',
+  'cognitive.routine': 'Routine + Recognition',
+  'cognitive.routineDesc': 'Daily steps and familiar faces and objects.',
+  'cognitive.minutes': 'min',
+  'caregiver.overview': 'Care overview',
+  'caregiver.title': 'Caregiver Dashboard',
+  'caregiver.subtitle': 'Everything about todays care - calm and clear.',
+  'caregiver.patients': 'Patients',
+  'caregiver.medicinesToday': 'Medicines today',
+  'caregiver.hydration': 'Hydration',
+  'caregiver.appointments': 'Appointments',
+  'caregiver.activity': 'Activity',
+  'caregiver.cognitive': 'Cognitive progress',
+  'caregiver.checklist': "Today's Checklist",
+  'caregiver.recent': 'Recent Activity',
+  'caregiver.upcoming': 'Upcoming Appointments',
+  'caregiver.careStatus': 'Care Status',
+  'caregiver.markDone': 'Mark done',
+  'caregiver.viewAll': 'View all',
+  'caregiver.message': 'Send encouragement',
+  'caregiver.call': 'Call patient',
+  'caregiver.streak': 'day care streak',
+  'activity.medicineCompleted': 'Medicine taken',
+  'activity.medicineDeferred': 'Medicine reminder set',
+  'activity.hydrationLogged': 'Water intake recorded',
+  'activity.appointmentViewed': 'Appointment viewed',
+  'common.oops': 'Something went wrong. Please try again.',
+  'common.continue': 'Continue',
+  'common.today': 'Today',
+  'common.demo': 'Demo',
+  'common.prototype': 'Prototype',
+  'common.comingPhase2': 'Coming in Phase 2',
+  'common.comingPhase4': 'Games in Phase 4',
+  'common.assamTouch': 'Made with care in Assam',
+  // Phase 4A â€” cognitive games
+  'game.memoryName': 'Memory Match',
+  'game.memoryHow': 'Look at the pictures. Then find the one we ask for.',
+  'game.attentionName': 'Focus Finder',
+  'game.attentionHow': 'Find the picture we ask for. Take your time.',
+  'game.routineName': 'Routine + Recognition',
+  'game.routineHow': 'Two gentle parts: daily steps and familiar objects.',
+  'game.howTo': 'How to play',
+  'game.lookCarefully': 'Look carefullyâ€¦',
+  'game.findThe': 'Find the {item}',
+  'game.tapThe': 'Tap the {item}',
+  'game.whatNext': 'What comes next?',
+  'game.correct': 'Great job!',
+  'game.tryAgain': 'Try again',
+  'game.roundOf': 'Round {n} of {total}',
+  'game.rounds': 'rounds',
+  'game.routineSection': 'Daily Routine',
+  'game.recognitionSection': 'Recognition',
+  'game.exit': 'Exit',
+  'game.exitConfirm': 'Leave the game?',
+  'game.exitYes': 'Yes, exit',
+  'game.exitNo': 'Keep playing',
+  'game.greatWork': 'Great work!',
+  'game.resultSub': 'Here is how you did today.',
+  'game.score': 'Score',
+  'game.accuracy': 'Accuracy',
+  'game.time': 'Time',
+  'game.difficulty': 'Difficulty',
+  'game.difficultyEasy': 'Easy',
+  'game.difficultyMedium': 'Medium',
+  'game.difficultyHard': 'Hard',
+  'game.difficultyAdvanced': 'Advanced',
+  'game.personalized': 'Personalized challenge',
+  'game.playAgain': 'Play Again',
+  'game.backHome': 'Back to Home',
+  'obj.teaCup': 'Tea cup',
+  'obj.mango': 'Mango',
+  'obj.umbrella': 'Umbrella',
+  'obj.basket': 'Bamboo basket',
+  'obj.boat': 'Boat',
+  'obj.ricePlate': 'Rice plate',
+  'obj.redFlower': 'Red flower',
+  'obj.butterfly': 'Butterfly',
+  'obj.fish': 'Fish',
+  'obj.sun': 'Sun',
+  'routine.wakeUp': 'Wake up',
+  'routine.brushTeeth': 'Brush teeth',
+  'routine.drinkWater': 'Drink water',
+  'routine.eatBreakfast': 'Eat breakfast',
+  'routine.takeMedicine': 'Take medicine',
+  'routine.goForWalk': 'Go for a walk',
+  'routine.sleep': 'Sleep',
+  'activity.gameCompleted': 'Game practice completed',
+};
+
+export default en;
+===AS_TAIL===
+  'patient.start': 'à¦†à§°à¦®à§à¦­',
+  'patient.takeMedicine': 'à¦”à¦·à¦§ à¦–à¦¾à¦“à¦•',
+  'patient.taken': 'à¦–à§‹à§±à¦¾ à¦¹à¦²',
+  'patient.medicineTaken': 'à¦”à¦·à¦§ à¦–à§‹à§±à¦¾ à¦¹â€™à¦² âœ“',
+  'patient.medicineOverdue': 'à¦”à¦·à¦§à§° à¦¸à¦®à¦¯à¦¼',
+  'patient.reminderSet': 'à¦®à¦¨à¦¤ à¦ªà§‡à¦²à§‹à§±à¦¾ à¦¬à¦¹à¦¾à¦²',
+  'patient.drinkWater': 'à¦ªà¦¾à¦¨à§€ à¦–à¦¾à¦“à¦•',
+  'patient.goalComplete': 'à¦†à¦œà¦¿à§° à¦²à¦•à§à¦·à§à¦¯ à¦¸à¦®à§à¦ªà§‚à§°à§à¦£',
+  'patient.goalCompleteSub': 'à¦­à¦¾à¦² à¦•à§°à¦¿à¦›à§‡! à¦†à¦œà¦¿ à¦¯à¦¥à§‡à¦·à§à¦Ÿ à¦ªà¦¾à¦¨à§€ à¦–à¦¾à¦‡à¦›à§‡à¥¤',
+  'patient.viewAppointment': 'à¦­à§à§°à¦®à¦£ à¦šà¦¾à¦“à¦•',
+  'patient.appointmentDetails': 'à¦­à§à§°à¦®à¦£à§° à¦¬à¦¿à§±à§°à¦£',
+  'patient.appointmentViewSub': 'à¦†à¦ªà§‹à¦¨à¦¾à§° à¦­à§à§°à¦®à¦£à§° à¦¬à¦¿à§±à§°à¦£à¥¤',
+  'patient.deferred': 'à¦¬à¦¹à¦¾à¦²',
+  'patient.cancelled': 'à¦¬à¦¾à¦¤à¦¿à¦²',
+  'patient.overdue': 'à¦¸à¦®à¦¯à¦¼ à¦¹â€™à¦²',
+  'patient.recent': 'à¦¶à§‡à¦¹à¦¤à§€à¦¯à¦¼à¦¾ à¦•à¦¾à§°à§à¦¯',
+  'patient.recentTitle': 'à¦¶à§‡à¦¹à¦¤à§€à¦¯à¦¼à¦¾ à¦•à¦¾à§°à§à¦¯à¦¸à¦®à§‚à¦¹',
+  'patient.progressTitle': 'à¦†à¦œà¦¿à§° à¦…à¦—à§à§°à¦—à¦¤à¦¿',
+  'patient.glasses': 'à¦—à¦¿à¦²à¦¾à¦š',
+  'patient.of': '/',
+  'patient.lastDrink': 'à¦¶à§‡à¦¹à¦¤à§€à¦¯à¦¼à¦¾ à¦ªà¦¾à¦¨à§€',
+  'patient.next': 'à¦ªà§°à§±à§°à§à¦¤à§€',
+  'patient.pending': 'à¦¬à¦¾à¦•à§€',
+  'patient.completed': 'à¦¹à¦²',
+  'patient.missed': 'à¦®à¦¿à¦›',
+  'patient.upcoming': 'à¦†à¦¹à¦¿à¦¬à¦²à¦—à§€à¦¯à¦¼à¦¾',
+  'patient.demoNote': 'à¦ªà§°à§à¦¯à¦¾à¦¯à¦¼ à§§-à¦¤ à¦¨à¦®à§à¦¨à¦¾ à¦¤à¦¥à§à¦¯à¥¤',
+  'cognitive.memory': 'à¦¸à§à¦®à§ƒà¦¤à¦¿',
+  'cognitive.memoryDesc': 'à¦›à¦¬à¦¿ à¦†à§°à§ à¦¯à§‹à§° à¦²à¦¾à¦¹à§‡à¦•à§ˆ à¦®à¦¨à¦¤ à§°à¦¾à¦–à¦•à¥¤',
+  'cognitive.attention': 'à¦®à¦¨à§‹à¦¯à§‹à¦—',
+  'cognitive.attentionDesc': 'à§°à¦‚ à¦†à§°à§ à¦¸à¦¹à¦œ à¦†à§°à§à¦¹à¦¿ à¦…à¦¨à§à¦¸à§°à¦£ à¦•à§°à¦•à¥¤',
+  'cognitive.routine': 'à¦¦à¦¿à¦¨à¦šà§°à§à¦¯à¦¾ + à¦šà¦¿à¦¨à¦¾à¦•à§à¦¤à¦•à§°à¦£',
+  'cognitive.routineDesc': 'à¦¦à§ˆà¦¨à¦¨à§à¦¦à¦¿à¦¨ à¦§à¦¾à¦ª à¦†à§°à§ à¦šà¦¿à¦¨à¦¾à¦•à¦¿ à¦®à§à¦–à¥¤',
+  'cognitive.minutes': 'à¦®à¦¿à¦¨à¦¿à¦Ÿ',
+  'caregiver.overview': 'à¦¯à¦¤à§à¦¨à§° à¦šà¦®à§',
+  'caregiver.title': 'à¦¯à¦¤à§à¦¨à¦•à¦¾à§°à§€ à¦¡à§‡à¦¶à§à¦¬à¦¬à§°à§à¦¡',
+  'caregiver.subtitle': 'à¦†à¦œà¦¿à§° à¦¯à¦¤à§à¦¨à§° à¦¸à¦•à¦²à§‹à¥¤',
+  'caregiver.patients': 'à§°à§‹à¦—à§€',
+  'caregiver.medicinesToday': 'à¦†à¦œà¦¿à§° à¦”à¦·à¦§',
+  'caregiver.hydration': 'à¦ªà¦¾à¦¨à§€',
+  'caregiver.appointments': 'à¦­à§à§°à¦®à¦£',
+  'caregiver.activity': 'à¦•à¦¾à§°à§à¦¯',
+  'caregiver.cognitive': 'à¦®à¦—à¦œà§à§° à¦…à¦—à§à§°à¦—à¦¤à¦¿',
+  'caregiver.checklist': 'à¦†à¦œà¦¿à§° à¦¤à¦¾à¦²à¦¿à¦•à¦¾',
+  'caregiver.recent': 'à¦¶à§‡à¦¹à¦¤à§€à¦¯à¦¼à¦¾ à¦•à¦¾à§°à§à¦¯',
+  'caregiver.upcoming': 'à¦†à¦¹à¦¿à¦¬à¦²à¦—à§€à¦¯à¦¼à¦¾ à¦­à§à§°à¦®à¦£',
+  'caregiver.careStatus': 'à¦¯à¦¤à§à¦¨à§° à¦…à§±à¦¸à§à¦¥à¦¾',
+  'caregiver.markDone': 'à¦¸à¦®à§à¦ªà§‚à§°à§à¦£ à¦•à§°à¦•',
+  'caregiver.viewAll': 'à¦¸à¦•à¦²à§‹ à¦šà¦¾à¦“à¦•',
+  'caregiver.message': 'à¦‰à§Žà¦¸à¦¾à¦¹ à¦ªà¦ à¦¾à¦“à¦•',
+  'caregiver.call': 'à§°à§‹à¦—à§€à¦²à§ˆ à¦«à§‹à¦¨',
+  'caregiver.streak': 'à¦¦à¦¿à¦¨à§° à¦¯à¦¤à§à¦¨ à¦§à¦¾à§°à¦¾',
+  'activity.medicineCompleted': 'à¦”à¦·à¦§ à¦–à§‹à§±à¦¾ à¦¹â€™à¦²',
+  'activity.medicineDeferred': 'à¦”à¦·à¦§à§° à¦®à¦¨à¦¤ à¦ªà§‡à¦²à§‹à§±à¦¾ à¦¬à¦¹à¦¾à¦²',
+  'activity.hydrationLogged': 'à¦ªà¦¾à¦¨à§€ à¦–à§‹à§±à¦¾ à¦²à¦¿à¦ªà¦¿à¦¬à¦¦à§à¦§ à¦¹â€™à¦²',
+  'activity.appointmentViewed': 'à¦­à§à§°à¦®à¦£ à¦šà§‹à§±à¦¾ à¦¹â€™à¦²',
+  'common.oops': 'à¦•à¦¿à¦¬à¦¾ à¦­à§à¦² à¦¹â€™à¦²à¥¤ à¦†à¦•à§Œ à¦šà§‡à¦·à§à¦Ÿà¦¾ à¦•à§°à¦•à¥¤',
+  'common.continue': 'à¦†à¦—à¦¬à¦¾à¦¢à¦¼à¦•',
+  'common.today': 'à¦†à¦œà¦¿',
+  'common.demo': 'à¦¨à¦®à§à¦¨à¦¾',
+  'common.prototype': 'à¦ªà§à§°à¦Ÿà¦Ÿà¦¾à¦‡à¦ª',
+  'common.comingPhase2': 'à¦ªà§°à§à¦¯à¦¾à¦¯à¦¼ à§¨-à¦¤ à¦†à¦¹à¦¿à¦¬',
+  'common.comingPhase4': 'à¦ªà§°à§à¦¯à¦¾à¦¯à¦¼ à§ª-à¦¤ à¦–à§‡à¦²',
+  'common.assamTouch': 'à¦…à¦¸à¦®à§° à¦ªà§°à¦¾ à¦®à§°à¦®à§‡à§°à§‡',
+  // Phase 4A â€” cognitive games
+  'game.memoryName': 'à¦¸à§à¦®à§ƒà¦¤à¦¿ à¦®à¦¿à¦²à¦¾à¦“à¦•',
+  'game.memoryHow': 'à¦šà¦¿à¦¤à§à§°à¦¬à§‹à§° à¦®à¦¨à§‡à§°à§‡ à¦šà¦¾à¦“à¦•à¥¤ à¦¤à¦¾à§° à¦ªà¦¿à¦›à¦¤ à¦¸à§à¦§à¦¾ à¦¬à¦¸à§à¦¤à§à¦Ÿà§‹ à¦¬à¦¿à¦šà¦¾à§°à¦¿ à¦‰à¦²à¦¿à¦¯à¦¼à¦¾à¦“à¦•à¥¤',
+  'game.attentionName': 'à¦®à¦¨à§‹à¦¯à§‹à¦— à¦¬à¦¿à¦šà¦¾à§°à¦•',
+  'game.attentionHow': 'à¦¸à§à¦§à¦¾ à¦šà¦¿à¦¤à§à§°à¦Ÿà§‹ à¦¬à¦¿à¦šà¦¾à§°à¦¿ à¦‰à¦²à¦¿à¦¯à¦¼à¦¾à¦“à¦•à¥¤ à¦¸à¦®à¦¯à¦¼ à¦²â€™à¦¬ à¦ªà¦¾à§°à§‡à¥¤',
+  'game.routineName': 'à¦¦à§ˆà¦¨à¦¨à§à¦¦à¦¿à¦¨ à¦•à§à§°à¦® + à¦šà¦¿à¦¨à¦¾à¦•à§à¦¤à¦•à§°à¦£',
+  'game.routineHow': 'à¦¦à§à¦Ÿà¦¾ à¦¸à¦¹à¦œ à¦…à¦‚à¦¶: à¦¦à§ˆà¦¨à¦¨à§à¦¦à¦¿à¦¨ à¦•à¦¾à¦® à¦†à§°à§ à¦šà¦¿à¦¨à¦¾à¦•à¦¿ à¦¬à¦¸à§à¦¤à§à¥¤',
+  'game.howTo': 'à¦•à§‡à¦¨à§‡à¦•à§ˆ à¦–à§‡à¦²à¦¿à¦¬',
+  'game.lookCarefully': 'à¦®à¦¨à§‡à§°à§‡ à¦šà¦¾à¦“à¦•â€¦',
+  'game.findThe': 'à¦¬à¦¿à¦šà¦¾à§°à¦¿ à¦‰à¦²à¦¿à¦¯à¦¼à¦¾à¦“à¦•: {item}',
+  'game.tapThe': 'à¦Ÿà¦¿à¦ªà¦•: {item}',
+  'game.whatNext': 'à¦‡à¦¯à¦¼à¦¾à§° à¦ªà¦¿à¦›à¦¤ à¦•à¦¿ à¦¹â€™à¦¬?',
+  'game.correct': 'à¦¬à¦¹à§à¦¤ à¦­à¦¾à¦²!',
+  'game.tryAgain': 'à¦†à¦•à§Œ à¦šà§‡à¦·à§à¦Ÿà¦¾ à¦•à§°à¦•',
+  'game.roundOf': 'à§°à¦¾à¦‰à¦£à§à¦¡ {n} / {total}',
+  'game.rounds': 'à§°à¦¾à¦‰à¦£à§à¦¡',
+  'game.routineSection': 'à¦¦à§ˆà¦¨à¦¨à§à¦¦à¦¿à¦¨ à¦•à§à§°à¦®',
+  'game.recognitionSection': 'à¦šà¦¿à¦¨à¦¾à¦•à§à¦¤à¦•à§°à¦£',
+  'game.exit': 'à¦“à¦²à¦¾à¦‡ à¦¯à¦¾à¦“à¦•',
+  'game.exitConfirm': 'à¦–à§‡à¦² à¦à§°à¦¿ à¦¯à¦¾à¦¬ à¦¨à§‡à¦•à¦¿?',
+  'game.exitYes': 'à¦¹à¦¯à¦¼, à¦“à¦²à¦¾à¦‡ à¦¯à¦¾à¦“à¦•',
+  'game.exitNo': 'à¦–à§‡à¦²à¦¿ à¦¥à¦¾à¦•à¦•',
+  'game.greatWork': 'à¦¬à¦¹à§à¦¤ à¦­à¦¾à¦² à¦•à¦¾à¦®!',
+  'game.resultSub': 'à¦†à¦œà¦¿ à¦†à¦ªà§à¦¨à¦¿ à¦•à§‡à¦¨à§‡à¦•à§ˆ à¦•à§°à¦¿à¦²à§‡ à¦¸à§‡à¦¯à¦¼à¦¾ à¦‡à¦¯à¦¼à¦¾à¦¤à¥¤',
+  'game.score': 'à¦¸à§à¦•à§°',
+  'game.accuracy': 'à¦¶à§à¦¦à§à¦§à¦¤à¦¾',
+  'game.time': 'à¦¸à¦®à¦¯à¦¼',
+  'game.difficulty': 'à¦•à¦ à¦¿à¦¨à¦¤à¦¾',
+  'game.difficultyEasy': 'à¦¸à¦¹à¦œ',
+  'game.difficultyMedium': 'à¦®à¦§à§à¦¯à¦®',
+  'game.difficultyHard': 'à¦•à¦ à¦¿à¦¨',
+  'game.difficultyAdvanced': 'à¦‰à¦¨à§à¦¨à¦¤',
+  'game.personalized': 'à¦¬à§à¦¯à¦•à§à¦¤à¦¿à¦—à¦¤ à¦ªà§à§°à¦¤à§à¦¯à¦¾à¦¹à§à¦¬à¦¾à¦¨',
+  'game.playAgain': 'à¦†à¦•à§Œ à¦–à§‡à¦²à¦•',
+  'game.backHome': 'à¦˜à§°à¦²à§ˆ à¦‰à¦­à¦¤à¦•',
+  'obj.teaCup': 'à¦šà¦¾à¦¹à§° à¦•à¦¾à¦ª',
+  'obj.mango': 'à¦†à¦®',
+  'obj.umbrella': 'à¦›à¦¾à¦¤à¦¿',
+  'obj.basket': 'à¦¬à¦¾à¦à¦¹à§° à¦Ÿà§‹à¦ªà§°à§€',
+  'obj.boat': 'à¦¨à¦¾à¦“',
+  'obj.ricePlate': 'à¦­à¦¾à¦¤à§° à¦¬à¦¾à¦Ÿà§€',
+  'obj.redFlower': 'à§°à¦™à¦¾ à¦«à§à¦²',
+  'obj.butterfly': 'à¦®à¦¥',
+  'obj.fish': 'à¦®à¦¾à¦›',
+  'obj.sun': 'à¦¸à§‚à§°à§à¦¯',
+  'routine.wakeUp': 'à¦¸à¦¾à§° à¦ªà§‹à§±à¦¾',
+  'routine.brushTeeth': 'à¦¦à¦¾à¦à¦¤ à¦®à¦šà¦¾',
+  'routine.drinkWater': 'à¦ªà¦¾à¦¨à§€ à¦–à§‹à§±à¦¾',
+  'routine.eatBreakfast': 'à¦œà¦¾à¦ªà¦¨ à¦–à§‹à§±à¦¾',
+  'routine.takeMedicine': 'à¦”à¦·à¦§ à¦–à§‹à§±à¦¾',
+  'routine.goForWalk': 'à¦–à§‹à¦œ à¦•à¦¢à¦¼à¦¾',
+  'routine.sleep': 'à¦Ÿà§‹à¦ªà¦¨à¦¿ à¦¯à§‹à§±à¦¾',
+  'activity.gameCompleted': 'à¦—à§‡à¦® à¦…à¦­à§à¦¯à¦¾à¦¸ à¦¸à¦®à§à¦ªà¦¨à§à¦¨ à¦¹â€™à¦²',
+};
+
+export default assamese;
+===USED_CG_KEYS===

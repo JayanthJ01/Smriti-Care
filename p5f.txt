@@ -1,0 +1,40 @@
+ActivityPanel.tsx
+cgShared.tsx
+HydrationPanel.tsx
+MedicinesPanel.tsx
+SummaryTiles.tsx
+CaregiverPage.tsx
+RecentPanel.tsx
+UpcomingPanel.tsx
+52:  addMedicine: (data: Omit<Medicine, 'id' | 'status'>) => void;
+53:  updateMedicine: (id: string, patch: Partial<Medicine>) => void;
+54:  removeMedicine: (id: string) => void;
+55:  toggleMedicineActive: (id: string) => void;
+56:  setHydrationTarget: (glasses: number) => void;
+57:  addAppointment: (data: Omit<Appointment, 'id'>) => void;
+58:  updateAppointment: (id: string, patch: Partial<Appointment>) => void;
+59:  removeAppointment: (id: string) => void;
+244:  const addMedicine = useCallback((data: Omit<Medicine, 'id' | 'status'>) => {
+259:  const updateMedicine = useCallback((id: string, patch: Partial<Medicine>) => {
+266:  const removeMedicine = useCallback((id: string) => {
+270:  const toggleMedicineActive = useCallback((id: string) => {
+277:  const setHydrationTarget = useCallback((glasses: number) => {
+282:  const addAppointment = useCallback((data: Omit<Appointment, 'id'>) => {
+297:  const updateAppointment = useCallback((id: string, patch: Partial<Appointment>) => {
+304:  const removeAppointment = useCallback((id: string) => {
+361:      addMedicine,
+362:      updateMedicine,
+363:      removeMedicine,
+364:      toggleMedicineActive,
+365:      setHydrationTarget,
+366:      addAppointment,
+367:      updateAppointment,
+368:      removeAppointment,
+379:      addMedicine,
+380:      updateMedicine,
+381:      removeMedicine,
+382:      toggleMedicineActive,
+383:      setHydrationTarget,
+384:      addAppointment,
+385:      updateAppointment,
+386:      removeAppointment,

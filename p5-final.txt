@@ -1,0 +1,113 @@
+===FILES=== 
+ActivityPanel.tsx
+cgShared.tsx
+HydrationPanel.tsx
+MedicinesPanel.tsx
+SummaryTiles.tsx
+--- 
+CaregiverPage.tsx
+RecentPanel.tsx
+UpcomingPanel.tsx
+===MUTATIONS=== 
+50:  /** Full medicine list incl. inactive (caregiver management). */
+52:  addMedicine: (data: Omit<Medicine, 'id' | 'status'>) => void;
+53:  updateMedicine: (id: string, patch: Partial<Medicine>) => void;
+54:  removeMedicine: (id: string) => void;
+57:  addAppointment: (data: Omit<Appointment, 'id'>) => void;
+58:  updateAppointment: (id: string, patch: Partial<Appointment>) => void;
+59:  removeAppointment: (id: string) => void;
+62:  saveGameResult: (result: GameResult) => void;
+244:  const addMedicine = useCallback((data: Omit<Medicine, 'id' | 'status'>) => {
+259:  const updateMedicine = useCallback((id: string, patch: Partial<Medicine>) => {
+266:  const removeMedicine = useCallback((id: string) => {
+282:  const addAppointment = useCallback((data: Omit<Appointment, 'id'>) => {
+297:  const updateAppointment = useCallback((id: string, patch: Partial<Appointment>) => {
+304:  const removeAppointment = useCallback((id: string) => {
+308:  const saveGameResult = useCallback((result: GameResult) => {
+361:      addMedicine,
+362:      updateMedicine,
+363:      removeMedicine,
+366:      addAppointment,
+367:      updateAppointment,
+368:      removeAppointment,
+370:      saveGameResult,
+379:      addMedicine,
+380:      updateMedicine,
+381:      removeMedicine,
+384:      addAppointment,
+385:      updateAppointment,
+386:      removeAppointment,
+387:      saveGameResult,
+===CG-KEYS=== 
+src\components\caregiver\ActivityPanel.tsx:620:  { id: 'all', key: 'cg.filterAll' },
+src\components\caregiver\ActivityPanel.tsx:659:  { id: 'medicine', key: 'cg.filterMedicine' },
+src\components\caregiver\ActivityPanel.tsx:708:  { id: 'water', key: 'cg.filterHydration' },
+src\components\caregiver\ActivityPanel.tsx:755:  { id: 'appointment', key: 'cg.filterAppointments' },
+src\components\caregiver\ActivityPanel.tsx:811:  { id: 'game', key: 'cg.filterCognitive' },
+src\components\caregiver\ActivityPanel.tsx:1243:    <SectionCard title={t('cg.activityTitle')}>
+src\components\caregiver\ActivityPanel.tsx:1292:      <div className="mb-4 flex flex-wrap gap-2" role="group" aria-label={t('cg.activityTitle')}>
+src\components\caregiver\ActivityPanel.tsx:1961:        <EmptyState icon="ðŸŒ¿" text={t('cg.noActivity')} />
+src\components\caregiver\HydrationPanel.tsx:992:    <SectionCard title={t('cg.hydration')}>
+src\components\caregiver\HydrationPanel.tsx:1103:          <p className="text-[15px] font-extrabold uppercase tracking-[0.08em] text-ink-500">{t('cg.todayProgress')}</p>
+src\components\caregiver\HydrationPanel.tsx:1853:            {pct >= 100 ? t('cg.goalReached') : `${pct}% ${t('cg.ofGoal')}`}
+src\components\caregiver\HydrationPanel.tsx:2045:          <Field label={t('cg.dailyTarget')}>
+src\components\caregiver\HydrationPanel.tsx:2318:            {t('cg.updateTarget')}
+src\components\caregiver\HydrationPanel.tsx:2375:          {saved && <p className="mt-2 text-[15px] font-extrabold text-pine-800" role="status">{t('cg.savedFeedback')}</p>}
+src\components\caregiver\HydrationPanel.tsx:2500:          <p className="mt-2 text-[14px] font-bold text-ink-500">{t('cg.targetHint')}</p>
+src\components\caregiver\MedicinesPanel.tsx:1156:  if (status === 'completed') return { key: 'cg.completed', tone: 'mint' };
+src\components\caregiver\MedicinesPanel.tsx:1233:  if (status === 'deferred') return { key: 'cg.deferred', tone: 'sun' };
+src\components\caregiver\MedicinesPanel.tsx:1307:  if (status === 'missed') return { key: 'cg.overdue', tone: 'coral' };
+src\components\caregiver\MedicinesPanel.tsx:1380:  return { key: 'cg.pending', tone: 'mist' };
+src\components\caregiver\MedicinesPanel.tsx:2167:      setError(t('cg.errName'));
+src\components\caregiver\MedicinesPanel.tsx:2405:      title={t('cg.medicines')}
+src\components\caregiver\MedicinesPanel.tsx:2544:          <Plus size={18} aria-hidden /> {t('cg.addMedicine')}
+src\components\caregiver\MedicinesPanel.tsx:2678:        <EmptyState icon="ðŸ’Š" text={t('cg.noMedicines')} />
+src\components\caregiver\MedicinesPanel.tsx:3465:                    {m.name} {!m.active && <span className="text-[13px] font-bold text-ink-500">({t('cg.inactive')})</span>}
+src\components\caregiver\MedicinesPanel.tsx:3917:                  <button type="button" onClick={() => toggleMedicineActive(m.id)} aria-label={t('cg.toggleActive')} className="grid h-11 w-11 place-items-center rounded-full border-[1.5px] border-line bg-white text-pine-900 transition hover:border-pine-700/40">
+src\components\caregiver\MedicinesPanel.tsx:4258:                  <button type="button" onClick={() => openEdit(m)} aria-label={t('cg.edit')} className="grid h-11 w-11 place-items-center rounded-full border-[1.5px] border-line bg-white text-pine-900 transition hover:border-pine-700/40">
+src\components\caregiver\MedicinesPanel.tsx:4582:                  <button type="button" onClick={() => removeMedicine(m.id)} aria-label={t('cg.delete')} className="grid h-11 w-11 place-items-center rounded-full border-[1.5px] border-coral-500/30 bg-coral-50 text-coral-600 transition hover:border-coral-500/60">
+src\components\caregiver\MedicinesPanel.tsx:6362:          {id ? t('cg.editMedicine') : t('cg.addMedicine')}
+src\components\caregiver\MedicinesPanel.tsx:6480:          <Field label={t('cg.medName')}>
+src\components\caregiver\MedicinesPanel.tsx:6523:            <input className={inputClass} value={draft.name} onChange={(e) => set({ name: e.target.value })} placeholder={t('cg.medNamePh')} />
+src\components\caregiver\MedicinesPanel.tsx:6743:            <Field label={t('cg.dosage')}>
+src\components\caregiver\MedicinesPanel.tsx:6787:              <input className={inputClass} value={draft.dosage} onChange={(e) => set({ dosage: e.target.value })} placeholder={t('cg.dosagePh')} />
+src\components\caregiver\MedicinesPanel.tsx:6959:            <Field label={t('cg.medTime')}>
+src\components\caregiver\MedicinesPanel.tsx:7171:          <Field label={t('cg.period')}>
+src\components\caregiver\MedicinesPanel.tsx:7796:                  {t(`cg.period_${p}`)}
+src\components\caregiver\MedicinesPanel.tsx:7923:          <Field label={t('cg.note')}>
+src\components\caregiver\MedicinesPanel.tsx:7963:            <input className={inputClass} value={draft.note} onChange={(e) => set({ note: e.target.value })} placeholder={t('cg.notePh')} />
+src\components\caregiver\MedicinesPanel.tsx:8343:            <span className="text-[16px] font-extrabold text-ink-800">{t('cg.active')}</span>
+src\components\caregiver\MedicinesPanel.tsx:8803:            {t('cg.cancel')}
+src\components\caregiver\MedicinesPanel.tsx:8899:            {t('cg.save')}
+===I18N-TAIL=== 
+At line:1 char:22
++   'routine.goForWalk': 'Go for a walk',  'routine.sleep': 'Sleep',  ' ...
++                      ~
+Unexpected token ':' in expression or statement.
+At line:1 char:121
++ ... Sleep',  'activity.gameCompleted': 'Game practice completed', }; expo ...
++                                                                  ~
+Missing expression after ',' in pipeline element.
+At line:1 char:122
++ ... eep',  'activity.gameCompleted': 'Game practice completed', }; export ...
++                                                                 ~
+Unexpected token '}' in expression or statement.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+ 
+===AS-TAIL=== 
+At line:1 char:22
++   'routine.goForWalk': '…Ý-…<…Ýo …Ý…Ý›…Ý¬…Ý_',  'routine.sleep': '… ...
++                      ~
+Unexpected token ':' in expression or statement.
+At line:1 char:190
++ ... Ý-…Ø…Ýr …Ý.…Ý-…?…Ý_…Ý_…Ý, …Ý,…Ýr…?…Ý¦…Ý"…?…Ý" …Ý1ƒ?T…Ýý', }; expo ...
++                                                                  ~
+Missing expression after ',' in pipeline element.
+At line:1 char:191
++ ... …Ø…Ýr …Ý.…Ý-…?…Ý_…Ý_…Ý, …Ý,…Ýr…?…Ý¦…Ý"…?…Ý" …Ý1ƒ?T…Ýý', }; export ...
++                                                                 ~
+Unexpected token '}' in expression or statement.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+ 
